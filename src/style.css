@@ -2,15 +2,15 @@
 
 body {
   margin: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Poppins', 'Montserrat', sans-serif;
   background-color: #1B1B1B;
   color: #eef8ce;
-  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   background-image:
     url(/assets/bg.png),
     repeating-linear-gradient(to right, transparent 0 500px, #73814B33 500px 501px);
   background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 *::-webkit-scrollbar {
@@ -46,7 +46,6 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 10px;
   backdrop-filter: blur(20px);
   z-index: 100;
   background-color: #1B1B1B11;
@@ -163,6 +162,22 @@ header .content-fit nav ul {
   pointer-events: none;
 }
 
+.decorate {
+  width: 50vw;
+  top: 38%;
+  bottom: 0;
+  right: 0;
+}
+
+.leaf {
+  position: absolute;
+  width: 70vw;
+  top: 55%;
+  bottom: 0;
+  right: 0;
+  z-index: 101;
+}
+
 @media screen and (max-width: 1023px) {
   #banner .title {
     font-size: 5em;
@@ -174,35 +189,88 @@ header .content-fit nav ul {
 }
 
 @media screen and (max-width: 767px) {
+  body {
+    font-size: 12px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  header {
+    padding-block: 0.5em;
+    background-color: rgba(27, 27, 27, 0.8);
+    backdrop-filter: blur(15px);
+  }
+
   #banner .title {
     font-size: 3em;
+    line-height: 1.1em;
+    padding-inline: 0.5em;
   }
 
   #intro .content-fit {
     flex-direction: column;
+    gap: 2em;
+    padding-inline: 1em;
   }
 
   .section .number {
     font-size: 5em;
+    text-align: center;
   }
 
   .section .content-fit .title {
     font-size: 2em;
+    text-align: center;
   }
 
   #description .content-fit {
     padding-right: 0;
+    padding-inline: 1em;
+    text-align: center;
+  }
+
+  #description .number {
+    font-size: 3em;
+  }
+
+  #description .title {
+    font-size: 3.5em;
+  }
+
+  #contact .content-fit {
+    padding-inline: 1em;
   }
 
   #contact table {
     font-size: 1em;
+    width: 100%;
+  }
+
+  #contact table td {
+    display: block;
+    width: 100%;
+    text-align: left !important;
+    border-bottom: 1px dashed #445022;
+    padding-block: 0.3em;
   }
 
   #contact .sign {
-    font-size: 2em;
+    font-size: 3em;
+    padding-top: 1em;
   }
 
   #container3D {
     position: absolute;
+    inset: 0;
+  }
+
+  .decorate {
+    width: auto;
+    top: auto;
+  }
+
+  .leaf {
+    width: 70vw;
+    top: auto;
   }
 }
