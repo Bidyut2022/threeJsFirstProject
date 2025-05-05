@@ -1,7 +1,12 @@
 import gsap from "gsap";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
-import { arrPositionModel } from "./config/positions";
+import { arrPositionModel, arrPositionModelMobile } from "./config/positions";
+
+const isMobile = window.innerWidth <= 768;
+const activeScrollPositions = isMobile
+  ? arrPositionModelMobile
+  : arrPositionModel;
 
 const camera = new THREE.PerspectiveCamera(
   10,
@@ -19,6 +24,11 @@ loader.load(
   "/assets/demon_bee_full_texture.glb",
   function (gltf) {
     bee = gltf.scene;
+    if (window.innerWidth <= 768) {
+      bee.scale.set(0.4, 0.4, 0.4);
+    } else {
+      bee.scale.set(1, 1, 1);
+    }
     scene.add(bee);
 
     mixer = new THREE.AnimationMixer(bee);
@@ -56,11 +66,11 @@ const modelMove = () => {
       currentSection = section.id;
     }
   });
-  let position_active = arrPositionModel.findIndex(
+  let position_active = activeScrollPositions.findIndex(
     (val) => val.id == currentSection
   );
   if (position_active >= 0) {
-    let new_coordinates = arrPositionModel[position_active];
+    let new_coordinates = activeScrollPositions[position_active];
     gsap.to(bee.position, {
       x: new_coordinates.position.x,
       y: new_coordinates.position.y,
@@ -77,11 +87,13 @@ const modelMove = () => {
     });
   }
 };
+
 window.addEventListener("scroll", () => {
   if (bee) {
     modelMove();
   }
 });
+
 window.addEventListener("resize", () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   camera.aspect = window.innerWidth / window.innerHeight;
