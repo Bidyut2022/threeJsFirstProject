@@ -157,7 +157,6 @@ header .content-fit nav ul {
 #container3D {
   position: fixed;
   inset: 0;
-  /* background-color: red; */
   z-index: 100;
   pointer-events: none;
 }
@@ -257,11 +256,6 @@ header .content-fit nav ul {
   #contact .sign {
     font-size: 3em;
     padding-top: 1em;
-  }
-
-  #container3D {
-    position: absolute;
-    inset: 0;
   }
 
   .decorate {
