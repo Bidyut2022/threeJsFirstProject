@@ -3,6 +3,11 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import { arrPositionModel, arrPositionModelMobile } from "./config/positions";
 
+window.addEventListener("load", function () {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("content").style.display = "block";
+});
+
 const isMobile = window.innerWidth <= 768;
 const activeScrollPositions = isMobile
   ? arrPositionModelMobile
